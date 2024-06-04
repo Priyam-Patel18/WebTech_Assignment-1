@@ -1,21 +1,17 @@
-// src/components/Product.js
 import React from 'react';
-import { Card, CardImg, CardBody, CardTitle, CardText, Button } from 'reactstrap';
 
-const Products = ({ product, addToCart }) => {
+const Product = ({ id, name, description, price, image, addToCart }) => {
   return (
-    <Card className="mb-4">
-      <div className="text-center">
-        <CardImg top src={product.image} alt={product.name} style={{ width: '300px', height: '300px', objectFit: 'contain' }} />
+    <div className="card h-100 product">
+      <img src={image} className="card-img-top product-img" alt={name} style={{ height: '300px', objectFit: 'cover' }} />
+      <div className="card-body">
+        <h5 className="card-title">{name}</h5>
+        <p className="card-text">{description}</p>
+        <p className="card-text">${price}</p>
+        <button className="btn btn-primary" onClick={() => addToCart({ id, name, price })}>Add to Cart</button>
       </div>
-      <CardBody>
-        <CardTitle tag="h5">{product.name}</CardTitle>
-        <CardText>{product.description}</CardText>
-        <CardText>${product.price}</CardText>
-        <Button color="primary" onClick={() => addToCart(product)}>Add to Cart</Button>
-      </CardBody>
-    </Card>
+    </div>
   );
 };
 
-export default Products;
+export default Product;
