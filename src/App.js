@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ProductsPage from './Components/ProductsList';
 import CartPage from './Components/CartPage';
+import AccountPage from './Components/AccountPage'; // Import the new AccountPage component
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 
@@ -29,6 +30,9 @@ const App = () => {
             <li className="nav-item">
               <Link className="nav-link" to="/cart">Cart</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/account">My Account</Link> {/* Add a link to the AccountPage */}
+            </li>
           </ul>
         </div>
       </div>
@@ -37,6 +41,7 @@ const App = () => {
           <Routes>
             <Route exact path="/" element={<ProductsPage addToCart={addToCart} />} />
             <Route path="/cart" element={<CartPage cartItems={cartItems} removeFromCart={removeFromCart} />} />
+            <Route path="/account" element={<AccountPage />} /> {/* Add a route for the AccountPage */}
           </Routes>
         </div>
       </div>
