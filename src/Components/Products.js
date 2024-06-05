@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { Card, Button, Input } from 'reactstrap';
+import { Card, Button, Input, Alert } from 'reactstrap';
 
 const Product = ({ id, name, description, image, price, addToCart }) => {
   const [quantity, setQuantity] = useState(1);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleQuantityChange = e => {
     setQuantity(e.target.value);
+  };
+
+  const handleAddToCart = () => {
+    addToCart({ id, name, image, price, quantity: parseInt(quantity) });
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 3000); // Hide the alert after 3 seconds
   };
 
   return (
@@ -19,11 +26,14 @@ const Product = ({ id, name, description, image, price, addToCart }) => {
         <div className="d-flex justify-content-between align-items-center mt-auto">
           <div className="d-flex align-items-center">
             <Input type="number" value={quantity} onChange={handleQuantityChange} min="1" className="mr-2" style={{ width: '70px', marginRight: '10px' }} />
-            <Button color="success" onClick={() => addToCart({ id, name, image, price, quantity: parseInt(quantity) })} className="btn-sm">Add to Cart</Button>
+            <Button color="success" onClick={handleAddToCart} className="btn-sm">Add to Cart</Button>
           </div>
-          <p className="card-text text-dark font-weight-bold">${price}</p>
+          <strong><p className="card-text text-dark">${price}</p></strong>
         </div>
       </div>
+      {showAlert && (
+        <Alert color="success" className="mt-3">Item added to cart!</Alert>
+      )}
     </Card>
   );
 };

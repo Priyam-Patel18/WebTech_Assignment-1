@@ -34,7 +34,7 @@ const CartPage = ({ cartItems, removeFromCart, updateQuantity }) => {
         <Button color="primary" className="mt-3 px-4" onClick={handleCheckout}>Checkout</Button>
       </div>
       {showMessage && (
-        <p className="text-success text-center mt-3 fs-4">Thank you for your purchase!</p>
+        <p className="text-success text-center mt-3 fs-4">Thank You! Your Purchase Was Successful.</p>
       )}
     </div>
   );
